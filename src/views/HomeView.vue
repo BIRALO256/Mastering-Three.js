@@ -1,22 +1,57 @@
-<template>
-  <div class="flex flex-col items-center justify-center min-h-screen bg-blue-100 text-center">
-    
-    <h1 class="text-4xl font-bold text-blue-700 mb-4">Welcome to My Vue App!</h1>
-    <p class="text-lg text-gray-600 mb-4">This is a sample app using Vue 3, TypeScript, and Tailwind CSS.</p>
-    <!-- Using traditional <i> tag for Font Awesome icons -->
-    <i class="fas fa-info-circle fa-lg mr-2 text-blue-600"></i>
-  </div>
+  <template>
+    <!-- Add the canvas for Three.js rendering -->
+    <canvas class="threejs"></canvas>
+  </template>
 
+  <script setup lang="ts">
+  import * as THREE from 'three';
+  import { onMounted } from 'vue';
+// intialize the scene
+  const scene = new THREE.Scene();
+
+//odd objects to the scene
+  const cubeGeometry = new  THREE.BoxGeometry(1,1,1)
+  const cubeMaterial = new THREE.MeshBasicMaterial({color: "red"})
+
+  const cubeMesh = new THREE.Mesh(
+    cubeGeometry,
+    cubeMaterial,
+  )
+
+  scene.add(cubeMesh)
+
+  //initialize the camera
+  const camera  = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,30)
+
+  //postion the camere
+  camera.position.z =5
+
+  //intizialize the render 
+  // Use the onMounted lifecycle hook to ensure the canvas is available
+onMounted(() => {
+  // Select the canvas element
+  const canvas = document.querySelector('canvas.threejs');
   
-</template>
+  // Check if the canvas exists before initializing the renderer
+  if (canvas) {
+    // Initialize the renderer with the canvas
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas
+    });
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+    // Set the size of the renderer
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
-export default defineComponent({
-  name: 'WelcomeComponent',
+    // Render the scene
+    renderer.setSize(window.innerWidth,window.innerHeight)
+    renderer.render(scene, camera);
+  }
 });
-</script>
 
-<style scoped>
-</style>
+  console.log(cubeMesh)
+  console.log(scene)
+  
+  </script>
+
+  <style scoped>
+  </style>

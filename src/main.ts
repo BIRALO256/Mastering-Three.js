@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import './assets/main.css';
 
+
 // Import all Font Awesome styles
 import '@fortawesome/fontawesome-free/css/all.css';
 

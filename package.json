@@ -13,11 +13,13 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "core-js": "^3.8.3",
     "preline": "^2.4.1",
+    "three": "^0.169.0",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@types/three": "^0.169.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
